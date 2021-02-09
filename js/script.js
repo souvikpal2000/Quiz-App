@@ -8,6 +8,10 @@ async function categoryHeader()
     //console.log(data.trivia_categories);
     var arr = data.trivia_categories;
     arr.unshift({id: 0, name: "Any Category"});
+
+    const loadingDiv = document.querySelector(".loading");
+    loadingDiv.removeChild(loadingDiv.childNodes[1]);
+
     arr.forEach(category => {
     	//console.log(category.name);
     	const accordionitem = document.createElement("div");
@@ -47,7 +51,7 @@ categoryHeader();
 
 function participantsFunction(id)
 {
-	console.log(id);
+	//console.log(id);
 	const div = document.createElement("div");
 	div.setAttribute("id", "cat"+id);
 	if(id === 0)

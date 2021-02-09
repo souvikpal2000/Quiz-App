@@ -59,6 +59,15 @@ $(".submit").click((e) => {
 var noOfQues;
 async function produceQuestion(cat,tok)
 {
+	const loading = document.createElement("div");
+	loading.setAttribute("class", "spinner-border");
+	loading.setAttribute("role", "status");
+	const span = document.createElement("span");
+	span.setAttribute("class", "visually-hidden");
+	span.innerHTML = "Loading...";
+	loading.appendChild(span);
+	document.querySelector(".loading").appendChild(loading);
+
 	count = 0;
 	score.innerHTML = count;
 	noOfQues = noOfQuestions();
@@ -71,6 +80,10 @@ async function produceQuestion(cat,tok)
 	const res = await fetch(question_url);
     const data = await res.json();
     console.log(data);
+
+    const loadingDiv = document.querySelector(".loading");
+    loadingDiv.removeChild(loadingDiv.childNodes[3]);
+
     //console.log(data.results[0]);
     //console.log(data.results[0].incorrect_answers);
     //console.log(data.results[0].incorrect_answers.length);

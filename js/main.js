@@ -52,6 +52,7 @@ function getCategory(token)
 const question = document.querySelectorAll('.question');
 $(".submit").click((e) => {
     e.preventDefault(); //Prevent page from reloading
+    console.log(document.querySelector(".userName").value);
     $(".question").remove();
     produceQuestion(categoryValue, get_token);
 });
@@ -236,7 +237,7 @@ function lockAnswer(index)
 		document.querySelector(`button[id=${index}]`).disabled = true;
 		if(selectedValue == onlyCorrAns[index.substr(3)])
 		{
-			count = count + 2;
+			count = count + 2; //SCORE INCREMENTED
 			score.innerHTML = count;
 			allDiv.forEach((Div) => {
 				//console.log(Div.textContent);

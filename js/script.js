@@ -40,7 +40,7 @@ async function categoryHeader()
     	}
     	controls = "cat" + category.id;
     	button.setAttribute("aria-controls", controls);
-    	button.innerHTML = category.name;
+    	button.innerHTML = `<b>${category.name}</b>`;
     	h2.appendChild(button);
 
     	participantsFunction(category.id);

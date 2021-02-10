@@ -11,6 +11,7 @@
 }
 .question{
 	border: 5px solid #bab6b6;
+	border-radius: 10px;
 }
 p{
 	padding: 10px;

@@ -4,7 +4,10 @@
 }
 .question-container>div{
 	flex-grow: 1;
-  	width: 33%;
+  	width: 40%;
+  	margin-left: 1%;
+  	margin-right: 1%;
+  	margin-top: 1%;
 }
 .question{
 	border: 5px solid #bab6b6;
@@ -49,7 +52,7 @@ p{
 	margin-top: 20px;
 }
 .takeQuiz{
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 	margin-top: 20px;
 }
 .heading{

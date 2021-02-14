@@ -52,9 +52,17 @@ function getCategory(token)
 const question = document.querySelectorAll('.question');
 $(".submit").click((e) => {
     e.preventDefault(); //Prevent page from reloading
-    console.log(document.querySelector(".userName").value);
-    $(".question").remove();
-    produceQuestion(categoryValue, get_token);
+    //console.log(document.querySelector(".userName").value);
+    if(document.querySelector(".userName").value == "")
+    {
+    	alert("ENTER YOUR NAME");
+    }
+    else
+    {
+    	document.querySelector(".userName").disabled = true;
+    	$(".question").remove();
+    	produceQuestion(categoryValue, get_token);
+    }
 });
 
 var noOfQues;
@@ -165,7 +173,7 @@ function shuffleOptions(array)
 }
 
 /*-------------------------------------------------------------------------------------*/
-
+var i=1;
 function printOptions(allOptions, index)
 {
 	//console.log(data.results.length);
@@ -180,6 +188,7 @@ function printOptions(allOptions, index)
 	button.innerHTML = "LOCK";
 	form.setAttribute('class', 'options');
 	div.appendChild(form);
+	
 	allOptions.forEach((option) => {
 		const innerDiv = document.createElement("div");
 		const input = document.createElement("input");
@@ -188,11 +197,15 @@ function printOptions(allOptions, index)
 		input.setAttribute("type", "radio");
 		input.setAttribute("name", index);
 		input.setAttribute("value", option);
+		input.setAttribute("class", option);
+		input.setAttribute("id", "opt-"+i);
 		input.setAttribute("onchange", "getValue(this)");
+		label.setAttribute("for", "opt-"+i);
 		innerDiv.appendChild(input);
 		label.textContent = option;
 		innerDiv.appendChild(label);
 		form.appendChild(innerDiv);
+		i++;
 	});
 	form.appendChild(button);
 }
@@ -202,9 +215,9 @@ function printOptions(allOptions, index)
 let selectedValue="";
 function getValue(radio)
 {
-   //console.log(radio.value);
-   selectedValue = radio.value;
-   //console.log(selectedValue);
+   	//console.log(radio.value);
+   	selectedValue = radio.className;
+   	//console.log(selectedValue);
 }
 
 /*-------------------------------------------------------------------------------------*/

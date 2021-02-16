@@ -15,6 +15,12 @@
 				<form class="mb-3">
 					<div class="input-group mb-3 col-12 col-sm-12">
   						<div class="input-group-prepend">
+    						<span class="input-group-text" id="inputGroup-sizing-default">Enter Your Email</span>
+  						</div>
+  						<input type="email" class="form-control userMail" aria-label="Default" aria-describedby="inputGroup-sizing-default" value="">
+					</div>
+					<div class="input-group mb-3 col-12 col-sm-12">
+  						<div class="input-group-prepend">
     						<span class="input-group-text" id="inputGroup-sizing-default">Enter Your Name</span>
   						</div>
   						<input type="text" class="form-control userName" aria-label="Default" aria-describedby="inputGroup-sizing-default" value="">
@@ -33,6 +39,31 @@
 						<button class="btn btn-success submit">Submit</button>
 					</div>
 				</form>
+			</div>
+
+			<div class="d-flex justify-content-center">
+				<!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Instructions</button>-->
+				<div class="modal hide fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  					<div class="modal-dialog">
+    					<div class="modal-content">
+      						<div class="modal-header">
+        						<h5 class="modal-title" id="staticBackdropLabel">Instructions</h5>
+        						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      						</div>
+      						<div class="modal-body">
+        						<ul>
+                      				<li>Please ensure you enter a valid email and name before starting off.</li>
+                      				<li>Remember to hit lock after you are done selecting your answer, only then your score will be considered.</li>
+                      				<li>After hitting lock you can't change your answer.</li>
+                      				<li>Without hitting lock if you go for submitting your quiz, your answers will not be considered !</li>
+                    			</ul>
+      						</div>
+      						<div class="modal-footer">
+        						<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Understood</button>
+      						</div>
+    					</div>
+  					</div>
+				</div>
 			</div>
 
 			<div class="d-flex justify-content-center">

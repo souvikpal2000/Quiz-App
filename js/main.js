@@ -1,3 +1,9 @@
+$(window).on('load', function() {
+    $('#staticBackdrop').modal('show');
+});
+
+/*-------------------------------------------------------------------------------------*/
+
 const select = document.querySelectorAll('select');
 const container = document.querySelector('.question-container');
 const score = document.querySelector(".score");
@@ -44,8 +50,18 @@ function getCategory(token)
 {
     categoryValue = select[0].value;
     console.log(categoryValue);
-    console.log(token);
+    //console.log(token);
 };
+
+/*-------------------------------------------------------------------------------------*/
+
+function ValidateEmail(mail) 
+{
+  	if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail)) 
+  	{
+		return true;
+  	}
+}
 
 /*-------------------------------------------------------------------------------------*/
 
@@ -53,13 +69,24 @@ const question = document.querySelectorAll('.question');
 $(".submit").click((e) => {
     e.preventDefault(); //Prevent page from reloading
     //console.log(document.querySelector(".userName").value);
-    if(document.querySelector(".userName").value == "")
-    {
-    	alert("ENTER YOUR NAME");
-    }
+	const name = document.querySelector(".userName").value;
+  	const userMail = document.querySelector(".userMail").value;
+  	if (!name && !userMail) 
+  	{
+    	alert("Enter Valid Name and Email");
+  	}
+  	else if (!name) 
+  	{
+    	alert("Enter Valid Name");
+  	}
+  	else if (!ValidateEmail(userMail)) 
+  	{
+   		alert("You have entered an invalid email address!");
+  	}
     else
     {
     	document.querySelector(".userName").disabled = true;
+    	document.querySelector(".userMail").disabled = true;
     	$(".question").remove();
     	produceQuestion(categoryValue, get_token);
     }
@@ -116,7 +143,7 @@ async function produceQuestion(cat,tok)
     {
     	const submitButtonDiv = document.querySelector(".submitButton");
 		const submitButton = document.createElement("button");
-		submitButton.setAttribute("class", "submitQuiz btn btn-success");
+		submitButton.setAttribute("class", "submitQuiz btn btn-success mb-3");
 		submitButton.setAttribute("type", "submit");
 		submitButton.setAttribute("onclick", "submitFinal()");
 		submitButton.innerHTML = "SUBMIT QUIZ";
@@ -199,7 +226,7 @@ function printOptions(allOptions, index)
 		input.setAttribute("value", option);
 		input.setAttribute("class", option);
 		input.setAttribute("id", "opt-"+i);
-		input.setAttribute("onchange", "getValue(this)");
+		input.setAttribute("onchange", `getValue(this, ${index})`);
 		label.setAttribute("for", "opt-"+i);
 		innerDiv.appendChild(input);
 		label.textContent = option;
@@ -212,25 +239,25 @@ function printOptions(allOptions, index)
 
 /*-------------------------------------------------------------------------------------*/
 
-let selectedValue="";
-function getValue(radio)
+let selectedValue=[];
+function getValue(radio,index)
 {
    	//console.log(radio.value);
-   	selectedValue = radio.className;
-   	//console.log(selectedValue);
+   	selectedValue[index] = radio.value;
+   	console.log(selectedValue);
 }
 
 /*-------------------------------------------------------------------------------------*/
 
 function lockAnswer(index)
 {
-	//console.log(selectedValue);
 	//console.log(selectedValue.length);
 	//console.log(index);
 	//console.log(index.substr(3));
-	if(selectedValue.length == 0)
+	//console.log(selectedValue);
+	if(selectedValue[index.substr(3)] == null)
 	{
-		alert("Choose Any Option");
+		alert("Choose Any Option "+selectedValue[index.substr(3)]);
 	}
 	else
 	{
@@ -248,7 +275,7 @@ function lockAnswer(index)
 			Div.classList.add("offhover");
 		});
 		document.querySelector(`button[id=${index}]`).disabled = true;
-		if(selectedValue == onlyCorrAns[index.substr(3)])
+		if(selectedValue[index.substr(3)] == onlyCorrAns[index.substr(3)])
 		{
 			count = count + 2; //SCORE INCREMENTED
 			score.innerHTML = count;
@@ -272,13 +299,12 @@ function lockAnswer(index)
 					Div.classList.remove("offhover");
 					Div.classList.add("correctAnswer");
 				}
-				else if(opt == selectedValue)
+				else if(opt == selectedValue[index.substr(3)])
 				{
 					Div.classList.remove("offhover");
 					Div.classList.add("wrongAnswer");
 				}
 			})
 		}	
-		selectedValue = "";
 	}
 }

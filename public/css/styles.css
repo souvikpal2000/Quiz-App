@@ -1,0 +1,66 @@
+.question-container{
+	display: flex;
+	flex-wrap: wrap;
+}
+.question-container>div{
+	flex-grow: 1;
+  	width: 40%;
+  	margin-left: 1%;
+  	margin-right: 1%;
+  	margin-top: 1%;
+}
+.question{
+	border: 5px solid #bab6b6;
+	border-radius: 10px;
+}
+p{
+	padding: 10px;
+}
+.options{
+	padding: 0px 10px 10px 10px;
+}
+.options label{
+	margin-left: 5px;
+}
+.lock{
+	margin-top: 10px;
+}
+.options input{
+	cursor: pointer;
+}
+.options label{
+	cursor: pointer;
+}
+.options div:hover{
+	background-color: #b8dfad;
+	border-radius: 50px;
+}
+.options>.offhover:hover{
+	background-color:inherit;
+}
+.correctAnswer{
+	background-color: #67d367;
+	border-radius: 50px;
+}
+.options>.correctAnswer:hover{
+	background-color:#67d367 ;
+}
+.wrongAnswer{
+	background-color: #ff7676;
+	border-radius: 50px;
+}
+.options>.wrongAnswer:hover{
+	background-color: #ff7676;
+}
+.submitButton{
+	margin-top: 20px;
+}
+.takeQuiz{
+	margin-bottom: 15px;
+	margin-top: 20px;
+}
+.heading{
+	display: flex;
+	justify-content: center;
+	margin-bottom: 10px;
+}
